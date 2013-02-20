@@ -1,0 +1,17 @@
+{
+  "name": "clock",
+  "repo": "code42day/clock",
+  "description": "Lets user choose time by clickin on hours and minutes",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js",
+    "template.js"
+  ],
+  "styles": [
+    "clock.css"
+  ]
+}
