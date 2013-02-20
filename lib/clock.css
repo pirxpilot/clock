@@ -1,0 +1,23 @@
+.clock table,
+.clock tr,
+.clock td {
+  margin: 0;
+  padding: 0;
+}
+
+.clock .hour,
+.clock .minute {
+  text-align: center;
+}
+
+.clock .minute {
+  margin-left: .5em;
+}
+
+.clock a {
+  display: inline-block;
+}
+
+.clock .selected a {
+  background-color: rgba(0, 0, 0, .2);
+}

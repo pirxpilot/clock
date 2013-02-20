@@ -1,10 +1,9 @@
-SRC=index.js
+SRC=index.js lib/clock.js
 
-build: components clock.css template.js $(SRC)
+all: lint build
+
+build: components lib/clock.css $(SRC)
 	@component build --dev
-
-template.js: template.html
-	@component convert $<
 
 components: component.json
 	@component install --dev

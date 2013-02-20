@@ -1,17 +1,29 @@
 {
   "name": "clock",
   "repo": "code42day/clock",
-  "description": "Lets user choose time by clickin on hours and minutes",
+  "description": "Clock UI component for use in time-picker",
   "version": "0.0.1",
-  "keywords": [],
-  "dependencies": {},
+  "keywords": [
+    "clock",
+    "time"
+  ],
+  "dependencies": {
+    "code42day/dataset": "*",
+    "component/delegates": "*",
+    "component/classes": "*",
+    "component/domify": "*",
+    "component/range": "*",
+    "component/emitter": "*",
+    "component/in-groups-of": "*",
+    "DamonOehlman/formatter": "*"
+  },
   "development": {},
   "license": "MIT",
   "scripts": [
     "index.js",
-    "template.js"
+    "lib/clock.js"
   ],
   "styles": [
-    "clock.css"
+    "lib/clock.css"
   ]
 }

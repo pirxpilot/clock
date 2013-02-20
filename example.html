@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Clock</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="build/build.css" type="text/css">
+    <style>
+      body {
+        font: 14px sans-serif;
+        padding: 3em;
+      }
+      .clock {
+        padding: 2px;
+        border: 1px solid #777;
+      }
+      .clock caption {
+        font-size: .9em;
+        font-weight: bold;
+      }
+      .clock a {
+        font-size: .8em;
+        width: 1.2em;
+        text-decoration: none;
+        padding: 3px;
+        color: #777;
+        background-color: #f8f8f8;
+      }
+      .clock a:hover {
+        color: black;
+      }
+      .clock .selected a {
+        background-color: lightblue;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Clock</h1>
+    <form>
+      <input id='time' placeholder='click on the clock...' readonly/>
+      <input id='time-complete' readonly/>
+    <form>
+    <script src="build/build.js"></script>
+    <script>
+      var time = document.getElementById('time');
+      var timeComplete = document.getElementById('time-complete');
+      var Clock = require('clock');
+      var one = new Clock;
+      one.select({ hour: 14, minute: 23 });
+      one.on('change', function(value, complete) {
+        var value = '' + value.hour + ':' + value.minute;
+        time.value = value;
+        if (complete) {
+          timeComplete.value = value;
+        }
+      })
+
+      document.body.appendChild(one.el);
+    </script>
+  </body>
+</html>
