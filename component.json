@@ -17,7 +17,9 @@
     "component/in-groups-of": "*",
     "DamonOehlman/formatter": "*"
   },
-  "development": {},
+  "development": {
+    "code42day/aurora-clock": "*"
+    },
   "license": "MIT",
   "scripts": [
     "index.js",
