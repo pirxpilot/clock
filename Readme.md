@@ -3,6 +3,8 @@
 
   Clock UI component for use in time-picker
 
+  ![Clock](https://gist.github.com/pirxpilot/5011178/raw/9da0b4c2194444a6a3965d71adaf2b8c59f1faba/preview.png)
+
 ## Installation
 
     $ component install code42day/clock
