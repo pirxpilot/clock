@@ -33,6 +33,18 @@ clock.select({
 
 Select the given `time` ({ hour, minute }).
 
+### Clock#min(minTime)
+
+Define the minimum time selectable with this clock (inclusive). Time values smaller than `minTime`
+are rendered with `invalid` class. All `change` events are generated only for values larger or equal
+to `minTime`.
+
+### Clock#max(maxTime)
+
+Define the maximum time selectable with this clock (inclusive). Time values larger than `maxTime`
+are rendered with `invalid` class. All `change` events are generated only for values smaller or equal
+to `maxTime`.
+
 ## License
 
   MIT
