@@ -8,6 +8,19 @@
         font: 14px sans-serif;
         padding: 3em;
       }
+      .clock .invalid {
+        opacity: .2;
+        background-color: rgba(0, 0, 0, .2);
+        cursor: default;
+      }
+      .clock a {
+        display: block;
+      }
+      input {
+        width: 10em;
+        margin-right: 1em;
+        font-size: 1.3em;
+      }
     </style>
   </head>
   <body>
@@ -15,23 +28,37 @@
     <form>
       <input id='time' placeholder='click on the clock...' readonly/>
       <input id='time-complete' readonly/>
+      <input id='time-restricted' readonly/>
     <form>
     <script src="build/build.js"></script>
     <script>
-      var time = document.getElementById('time');
-      var timeComplete = document.getElementById('time-complete');
       var Clock = require('clock');
-      var one = new Clock;
-      one.select({ hour: 14, minute: 23 });
-      one.on('change', function(value, complete) {
-        var value = '' + value.hour + ':' + value.minute;
-        time.value = value;
-        if (complete) {
-          timeComplete.value = value;
-        }
-      })
 
-      document.body.appendChild(one.el);
+      function updateInput(id, value) {
+        var str = '' + value.hour + ':' + value.minute;
+        document.getElementById(id).value = str;
+      }
+
+      var standard = new Clock()
+        .on('change', function(value, complete) {
+          updateInput('time', value);
+          if (complete) {
+            updateInput('time-complete', value);
+            restricted.min(value);
+          }
+        });
+
+      var restricted = new Clock()
+        .min({ hour: 11, minute: 42 })
+        .max({ hour: 22, minute: 15 })
+        .on('change', function(value) {
+          updateInput('time-restricted', value);
+        })
+
+      standard.select({ hour: 14, minute: 23 });
+
+      document.body.appendChild(standard.el);
+      document.body.appendChild(restricted.el);
     </script>
   </body>
 </html>

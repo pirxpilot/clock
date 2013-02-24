@@ -8,10 +8,13 @@
     "time"
   ],
   "dependencies": {
+    "code42day/bounds": "*",
     "code42day/dataset": "*",
     "component/delegates": "*",
     "component/classes": "*",
+    "component/clone": "*",
     "component/domify": "*",
+    "component/enumerable": "*",
     "component/range": "*",
     "component/emitter": "*",
     "component/in-groups-of": "*",
@@ -23,7 +26,8 @@
   "license": "MIT",
   "scripts": [
     "index.js",
-    "lib/clock.js"
+    "lib/clock.js",
+    "lib/timerange.js"
   ],
   "styles": [
     "lib/clock.css"
