@@ -25,40 +25,53 @@
   </head>
   <body>
     <h1>Clock</h1>
-    <form>
-      <input id='time' placeholder='click on the clock...' readonly/>
-      <input id='time-complete' readonly/>
-      <input id='time-restricted' readonly/>
-    <form>
+    <div id='standard'>
+      <h2>Unconstrained clock</h2>
+      <input class='time' placeholder='click on the clock...' readonly/>
+      <input class='time-complete' readonly/>
+    </div>
+    <div id='restricted'>
+      <h2>Standard restriction</h2>
+      <input class='time' placeholder='click on the clock...' readonly/>
+      <input class='time-complete' readonly/>
+    </div>
+    <div id='reversed'>
+      <h2>Reverse restriction</h2>
+      <input class='time' placeholder='click on the clock...' readonly/>
+      <input class='time-complete' readonly/>
+    </div>
     <script src="build/build.js"></script>
     <script>
-      var Clock = require('clock');
+      var Clock = require('clock'),
+        clocks = {};
 
-      function updateInput(id, value) {
+      function updateInput(section, selector, value) {
         var str = '' + value.hour + ':' + value.minute;
-        document.getElementById(id).value = str;
+        section.querySelector(selector).value = str;
       }
 
-      var standard = new Clock()
+      ['standard', 'restricted', 'reversed'].forEach(function(name) {
+        var section = document.querySelector('#' + name);
+        clocks[name] = new Clock()
         .on('change', function(value, complete) {
-          updateInput('time', value);
+          updateInput(section, ' .time', value);
           if (complete) {
-            updateInput('time-complete', value);
-            restricted.min(value);
+            updateInput(section, ' .time-complete', value);
           }
         });
+        section.appendChild(clocks[name].el);
+      });
 
-      var restricted = new Clock()
+      clocks.standard
+        .select({ hour: 14, minute: 23 });
+
+      clocks.restricted
         .min({ hour: 11, minute: 42 })
-        .max({ hour: 22, minute: 15 })
-        .on('change', function(value) {
-          updateInput('time-restricted', value);
-        })
+        .max({ hour: 22, minute: 15 });
 
-      standard.select({ hour: 14, minute: 23 });
-
-      document.body.appendChild(standard.el);
-      document.body.appendChild(restricted.el);
+      clocks.reversed
+        .min({ hour: 18, minute: 15 })
+        .max({ hour: 10, minute: 42 })
     </script>
   </body>
 </html>
