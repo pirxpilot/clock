@@ -1,4 +1,10 @@
 
+1.1.1 / 2013-02-28 
+==================
+
+ * Add tests for timerange
+ * Simplify timerange by using bounds component
+
 1.1.0 / 2013-02-27 
 ==================
 

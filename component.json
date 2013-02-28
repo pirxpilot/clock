@@ -2,7 +2,7 @@
   "name": "clock",
   "repo": "code42day/clock",
   "description": "Clock UI component for use in time-picker",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "keywords": [
     "clock",
     "time"
