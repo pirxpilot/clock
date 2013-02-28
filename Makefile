@@ -1,6 +1,6 @@
 SRC=index.js lib/clock.js
 
-all: lint build
+all: lint test build
 
 build: components lib/clock.css $(SRC)
 	@component build --dev
@@ -9,9 +9,13 @@ components: component.json
 	@component install --dev
 
 lint:
-	@jshint $(SRC)
+	@./node_modules/.bin/jshint $(SRC)
+
+test:
+	@./node_modules/.bin/mocha \
+		--reporter spec
 
 clean:
 	rm -fr build components template.js
 
-.PHONY: clean lint
+.PHONY: clean test lint

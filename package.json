@@ -1,0 +1,30 @@
+{
+  "name": "component-clock",
+  "version": "1.1.0",
+  "description": "Clock UI component for use in time-picker",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/code42day/clock.git"
+  },
+  "keywords": [
+    "clock",
+    "time"
+  ],
+  "author": "Damian Krzeminski <pirxpilot@code42day.com>",
+  "license": "MIT",
+  "readmeFilename": "Readme.md",
+  "dependencies": {
+    "bounds": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.8.1",
+    "jshint": "~1.0.0"
+  }
+}
