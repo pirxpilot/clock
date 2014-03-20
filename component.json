@@ -8,16 +8,16 @@
     "time"
   ],
   "dependencies": {
-    "code42day/bounds": "*",
-    "code42day/dataset": "*",
-    "component/delegates": "*",
-    "component/classes": "*",
-    "component/clone": "*",
-    "component/domify": "*",
-    "component/enumerable": "*",
-    "component/range": "*",
-    "component/emitter": "*",
-    "component/in-groups-of": "*",
+    "code42day/bounds": "1.0.0",
+    "code42day/dataset": "0.3.0",
+    "component/delegates": "1.0.3",
+    "component/classes": "1.2.1",
+    "component/clone": "0.2.2",
+    "component/domify": "1.2.2",
+    "component/enumerable": "0.3.1",
+    "component/range": "1.0.0",
+    "component/emitter": "1.1.2",
+    "component/in-groups-of": "1.0.0",
     "DamonOehlman/formatter": "*"
   },
   "development": {
