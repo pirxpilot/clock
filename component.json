@@ -10,7 +10,7 @@
   "dependencies": {
     "code42day/bounds": "*",
     "code42day/dataset": "*",
-    "component/delegates": "*",
+    "component/events": "1.0.5",
     "component/classes": "*",
     "component/clone": "*",
     "component/domify": "*",
