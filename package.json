@@ -24,7 +24,7 @@
     "bounds": "~1"
   },
   "devDependencies": {
-    "mocha": "~1.8.1",
-    "jshint": "~1.0.0"
+    "mocha": "~1",
+    "jshint": "~2"
   }
 }
