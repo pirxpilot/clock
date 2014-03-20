@@ -1,4 +1,14 @@
 
+1.2.0 / 2014-03-20
+==================
+
+ * add demo
+ * freeze component dependency versions
+ * update mocha and jshint deps
+ * fix tests - upgrade bounds package
+ * Remove returning first element after domifying the clock
+ * Using component/events instead of component/delegates
+
 1.1.1 / 2013-02-28 
 ==================
 
