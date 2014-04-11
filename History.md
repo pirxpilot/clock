@@ -1,4 +1,10 @@
 
+1.2.1 / 2014-04-10
+==================
+
+ * update dependencies
+ * replace formatter with el
+
 1.2.0 / 2014-03-20
 ==================
 
