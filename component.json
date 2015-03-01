@@ -11,7 +11,7 @@
   "dependencies": {
     "code42day/bounds": "1.0.0",
     "code42day/dataset": "0.3.0",
-    "code42day/el": "0.1.1",
+    "code42day/el": "1.0.0",
     "component/events": "1.0.6",
     "component/classes": "1.2.1",
     "component/clone": "0.2.2",
