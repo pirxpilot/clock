@@ -14,6 +14,14 @@
   margin-left: .5em;
 }
 
+.clock .minute a:before {
+  content: attr(data-minute)
+}
+
+.clock .hour a:before {
+  content: attr(data-hour)
+}
+
 .clock a {
   display: inline-block;
 }
