@@ -383,6 +383,90 @@ function dataset(node, attr, value) {\n\
 }\n\
 //@ sourceURL=code42day-dataset/index.js"
 ));
+require.register("code42day-el/index.js", Function("exports, require, module",
+"// see: http://www.w3.org/html/wg/drafts/html/master/single-page.html#void-elements\n\
+var voids = [\n\
+  'area', 'base', 'br', 'col', 'embed',\n\
+  'hr', 'img', 'input', 'keygen', 'link',\n\
+  'menuitem', 'meta', 'param', 'source', 'track', 'wbr'\n\
+].reduce(function(o, v) {\n\
+  o[v] = true;\n\
+  return o;\n\
+}, Object.create(null));\n\
+\n\
+function htmlTag(tag, content, attrStr) {\n\
+  var text = ['<',\n\
+    tag,\n\
+    attrStr ? ' ' + attrStr :  '',\n\
+    '>'\n\
+  ];\n\
+  if(!voids[tag]) {\n\
+    text = text.concat([\n\
+      content || '',\n\
+      '</',\n\
+      tag,\n\
+      '>'\n\
+    ]);\n\
+  }\n\
+  return text;\n\
+}\n\
+\n\
+function xmlTag(tag, content, attrStr) {\n\
+  var text = ['<',\n\
+    tag,\n\
+    attrStr ? ' ' + attrStr :  '',\n\
+  ];\n\
+  if (!content || !content.length) {\n\
+    text.push('/>');\n\
+  } else {\n\
+    text = text.concat([\n\
+      '>',\n\
+      content,\n\
+      '</',\n\
+      tag,\n\
+      '>'\n\
+    ]);\n\
+  }\n\
+  return text;\n\
+}\n\
+\n\
+function toStr(tagFn, tag, content, attrs) {\n\
+  var attrStr, classes, ids;\n\
+\n\
+  if (typeof content !== 'string') {\n\
+    attrs = content;\n\
+    content = '';\n\
+  }\n\
+\n\
+  tag = tag || '';\n\
+  attrs = attrs || {};\n\
+\n\
+  classes = tag.split('.');\n\
+  tag = classes.shift() || 'div';\n\
+  if (classes.length) {\n\
+    classes = classes.join(' ');\n\
+    if (attrs['class']) {\n\
+      attrs['class'] += ' ' + classes;\n\
+    } else {\n\
+      attrs['class'] = classes;\n\
+    }\n\
+  }\n\
+  ids = tag.split('#');\n\
+  if (ids.length > 1) {\n\
+    tag = ids[0] || 'div';\n\
+    attrs.id = ids[1];\n\
+  }\n\
+\n\
+  attrStr = Object.keys(attrs).map(function(attr) {\n\
+    return attr +  '=\"' + attrs[attr] + '\"';\n\
+  }).join(' ');\n\
+\n\
+  return tagFn(tag, content, attrStr).join('');\n\
+}\n\
+\n\
+module.exports = toStr.bind(null, htmlTag);\n\
+module.exports.xml = toStr.bind(null, xmlTag);//@ sourceURL=code42day-el/index.js"
+));
 require.register("component-event/index.js", Function("exports, require, module",
 "var bind = window.addEventListener ? 'addEventListener' : 'attachEvent',\n\
     unbind = window.removeEventListener ? 'removeEventListener' : 'detachEvent',\n\
@@ -401,7 +485,6 @@ require.register("component-event/index.js", Function("exports, require, module"
 \n\
 exports.bind = function(el, type, fn, capture){\n\
   el[bind](prefix + type, fn, capture || false);\n\
-\n\
   return fn;\n\
 };\n\
 \n\
@@ -418,7 +501,6 @@ exports.bind = function(el, type, fn, capture){\n\
 \n\
 exports.unbind = function(el, type, fn, capture){\n\
   el[unbind](prefix + type, fn, capture || false);\n\
-\n\
   return fn;\n\
 };//@ sourceURL=component-event/index.js"
 ));
@@ -485,6 +567,7 @@ module.exports = match;\n\
  */\n\
 \n\
 function match(el, selector) {\n\
+  if (!el || el.nodeType !== 1) return false;\n\
   if (vendor) return vendor.call(el, selector);\n\
   var nodes = query.all(selector, el.parentNode);\n\
   for (var i = 0; i < nodes.length; ++i) {\n\
@@ -496,7 +579,7 @@ function match(el, selector) {\n\
 ));
 require.register("discore-closest/index.js", Function("exports, require, module",
 "var matches = require('matches-selector')\n\
-\n\
+console.log(\"DEPRECATED use https://github.com/component/closest\");\n\
 module.exports = function (element, selector, checkYoSelf, root) {\n\
   element = checkYoSelf ? {parentNode: element} : element\n\
 \n\
@@ -513,7 +596,8 @@ module.exports = function (element, selector, checkYoSelf, root) {\n\
     if (element === root)\n\
       return  \n\
   }\n\
-}//@ sourceURL=discore-closest/index.js"
+}\n\
+//@ sourceURL=discore-closest/index.js"
 ));
 require.register("component-delegate/index.js", Function("exports, require, module",
 "/**\n\
@@ -964,7 +1048,11 @@ module.exports = function(val){\n\
   if (val !== val) return 'nan';\n\
   if (val && val.nodeType === 1) return 'element';\n\
 \n\
-  return typeof val.valueOf();\n\
+  val = val.valueOf\n\
+    ? val.valueOf()\n\
+    : Object.prototype.valueOf.apply(val)\n\
+\n\
+  return typeof val;\n\
 };\n\
 //@ sourceURL=component-type/index.js"
 ));
@@ -1123,7 +1211,7 @@ require.register("component-props/index.js", Function("exports, require, module"
  * Global Names\n\
  */\n\
 \n\
-var globals = /\\b(Array|Date|Object|Math|JSON)\\b/g;\n\
+var globals = /\\b(this|Array|Date|Object|Math|JSON)\\b/g;\n\
 \n\
 /**\n\
  * Return immediate identifiers parsed from `str`.\n\
@@ -1153,7 +1241,7 @@ function props(str) {\n\
   return str\n\
     .replace(/\\.\\w+|\\w+ *\\(|\"[^\"]*\"|'[^']*'|\\/([^/]+)\\//g, '')\n\
     .replace(globals, '')\n\
-    .match(/[a-zA-Z_]\\w*/g)\n\
+    .match(/[$a-zA-Z_]\\w*/g)\n\
     || [];\n\
 }\n\
 \n\
@@ -1210,8 +1298,11 @@ require.register("component-to-function/index.js", Function("exports, require, m
 "/**\n\
  * Module Dependencies\n\
  */\n\
-\n\
-var expr = require('props');\n\
+try {\n\
+  var expr = require('props');\n\
+} catch(e) {\n\
+  var expr = require('component-props');\n\
+}\n\
 \n\
 /**\n\
  * Expose `toFunction()`.\n\
@@ -1334,6 +1425,12 @@ function get(str) {\n\
 }\n\
 //@ sourceURL=component-to-function/index.js"
 ));
+require.register("juliangruber-isarray/index.js", Function("exports, require, module",
+"module.exports = Array.isArray || function (arr) {\n\
+  return Object.prototype.toString.call(arr) == '[object Array]';\n\
+};\n\
+//@ sourceURL=juliangruber-isarray/index.js"
+));
 require.register("component-enumerable/index.js", Function("exports, require, module",
 "\n\
 /**\n\
@@ -1341,6 +1438,7 @@ require.register("component-enumerable/index.js", Function("exports, require, mo
  */\n\
 \n\
 var toFunction = require('to-function')\n\
+  , isArray = require(\"isarray\")\n\
   , proto = {};\n\
 \n\
 /**\n\
@@ -1374,7 +1472,7 @@ function mixin(obj){\n\
 \n\
 function Enumerable(obj) {\n\
   if (!(this instanceof Enumerable)) {\n\
-    if (Array.isArray(obj)) return new Enumerable(obj);\n\
+    if (isArray(obj)) return new Enumerable(obj);\n\
     return mixin(obj);\n\
   }\n\
   this.obj = obj;\n\
@@ -1431,6 +1529,7 @@ Enumerable.prototype.__iterate__ = function(){\n\
  * @api public\n\
  */\n\
 \n\
+proto.forEach =\n\
 proto.each = function(fn){\n\
   var vals = this.__iterate__();\n\
   var len = vals.length();\n\
@@ -1485,6 +1584,7 @@ proto.map = function(fn){\n\
  * @api public\n\
  */\n\
 \n\
+proto.filter =\n\
 proto.select = function(fn){\n\
   fn = toFunction(fn);\n\
   var val;\n\
@@ -1624,15 +1724,13 @@ proto.find = function(fn){\n\
 \n\
 proto.findLast = function(fn){\n\
   fn = toFunction(fn);\n\
-  var ret;\n\
   var val;\n\
   var vals = this.__iterate__();\n\
   var len = vals.length();\n\
-  for (var i = 0; i < len; ++i) {\n\
+  for (var i = len - 1; i > -1; --i) {\n\
     val = vals.get(i);\n\
-    if (fn(val, i)) ret = val;\n\
+    if (fn(val, i)) return val;\n\
   }\n\
-  return ret;\n\
 };\n\
 \n\
 /**\n\
@@ -1771,28 +1869,6 @@ proto.has = function(obj){\n\
 };\n\
 \n\
 /**\n\
- * Grep values using the given `re`.\n\
- *\n\
- *    users.map('name').grep(/^tobi/i)\n\
- *\n\
- * @param {RegExp} re\n\
- * @return {Enumerable}\n\
- * @api public\n\
- */\n\
-\n\
-proto.grep = function(re){\n\
-  var val;\n\
-  var vals = this.__iterate__();\n\
-  var len = vals.length();\n\
-  var arr = [];\n\
-  for (var i = 0; i < len; ++i) {\n\
-    val = vals.get(i);\n\
-    if (re.test(val)) arr.push(val);\n\
-  }\n\
-  return new Enumerable(arr);\n\
-};\n\
-\n\
-/**\n\
  * Reduce with `fn(accumulator, val, i)` using\n\
  * optional `init` value defaulting to the first\n\
  * enumerable value.\n\
@@ -1845,7 +1921,7 @@ proto.reduce = function(fn, init){\n\
 proto.max = function(fn){\n\
   var val;\n\
   var n = 0;\n\
-  var max = 0;\n\
+  var max = -Infinity;\n\
   var vals = this.__iterate__();\n\
   var len = vals.length();\n\
 \n\
@@ -1863,6 +1939,51 @@ proto.max = function(fn){\n\
   }\n\
 \n\
   return max;\n\
+};\n\
+\n\
+/**\n\
+ * Determine the min value.\n\
+ *\n\
+ * With a callback function:\n\
+ *\n\
+ *    pets.min(function(pet){\n\
+ *      return pet.age\n\
+ *    })\n\
+ *\n\
+ * With property strings:\n\
+ *\n\
+ *    pets.min('age')\n\
+ *\n\
+ * With immediate values:\n\
+ *\n\
+ *    nums.min()\n\
+ *\n\
+ * @param {Function|String} fn\n\
+ * @return {Number}\n\
+ * @api public\n\
+ */\n\
+\n\
+proto.min = function(fn){\n\
+  var val;\n\
+  var n = 0;\n\
+  var min = Infinity;\n\
+  var vals = this.__iterate__();\n\
+  var len = vals.length();\n\
+\n\
+  if (fn) {\n\
+    fn = toFunction(fn);\n\
+    for (var i = 0; i < len; ++i) {\n\
+      n = fn(vals.get(i), i);\n\
+      min = n < min ? n : min;\n\
+    }\n\
+  } else {\n\
+    for (var i = 0; i < len; ++i) {\n\
+      n = vals.get(i);\n\
+      min = n < min ? n : min;\n\
+    }\n\
+  }\n\
+\n\
+  return min;\n\
 };\n\
 \n\
 /**\n\
@@ -2275,313 +2396,6 @@ module.exports = function(arr, n){\n\
   return ret;\n\
 };//@ sourceURL=component-in-groups-of/index.js"
 ));
-require.register("damonoehlman-formatter/index.js", Function("exports, require, module",
-"/* jshint node: true */\n\
-'use strict';\n\
-\n\
-var reVariable = /\\{\\{\\s*([^\\}]+?)\\s*\\}\\}/;\n\
-var mods = require('./mods');\n\
-\n\
-/**\n\
-  # formatter\n\
-\n\
-  This is a simple library designed to do one thing and one thing only -\n\
-  replace variables in strings with variable values.  It is built in such a\n\
-  way that the formatter strings are parsed and you are provided with a\n\
-  function than can efficiently be called to provide the custom output.\n\
-\n\
-  ## Example Usage\n\
-\n\
-  <<< examples/likefood.js\n\
-\n\
-  __NOTE__: Formatter is not designed to be a templating library and if\n\
-  you are already using something like Handlebars or\n\
-  [hogan](https://github.com/twitter/hogan.js) in your library or application\n\
-  stack consider using them instead.\n\
-\n\
-  ## Using named variables\n\
-\n\
-  In the examples above we saw how the formatter can be used to replace\n\
-  function arguments in a formatter string.  We can also set up a formatter\n\
-  to use particular key values from an input string instead if that is more\n\
-  suitable:\n\
-\n\
-  <<< examples/likefood-named.js\n\
-\n\
-  ## Nested Property Values\n\
-\n\
-  Since version `0.1.0` you can also access nested property values, as you\n\
-  can with templates like handlebars.\n\
-\n\
-  ## Partial Execution\n\
-\n\
-  Since version `0.3.x` formatter also supports partial execution when using\n\
-  indexed arguments (e.g. `{{ 0 }}`, `{{ 1 }}`, etc).  For example:\n\
-\n\
-  <<< examples/partial.js\n\
-\n\
-  In the case above, the original formatter function returned by `formatter`\n\
-  did not receive enough values to resolve all the required variables.  As\n\
-  such it returned a function ready to accept the remaining values.\n\
-\n\
-  Once all values have been received the output will be generated.\n\
-\n\
-  ## Command Line Usage\n\
-\n\
-  If installed globally (or accessed through `npm bin`) you can run formatter\n\
-  as in a CLI.  It's behaviour is pretty simple whereby it takes every \n\
-  argument specified with preceding double-dash (e.g. `--name=Bob`) and\n\
-  creates a data object using those variables.  Any remaining variables are\n\
-  then passed in as numbered args.\n\
-\n\
-  So if we had a text file (template.txt):\n\
-\n\
-  ```\n\
-  Welcome to {{ 0 }}, {{ name }}!\n\
-  ```\n\
-\n\
-  Then we would be able to execute formatter like so to generate the expanded\n\
-  output to `stdout`:\n\
-\n\
-  ```\n\
-  formatter --name=\"Fred Flintstone\" Australia < test/template.txt\n\
-  ```\n\
-\n\
-  produces:\n\
-\n\
-  ```\n\
-  Welcome to Australia, Fred Flintstone!\n\
-  ```\n\
-\n\
-**/\n\
-\n\
-var formatter = module.exports = function(format, opts) {\n\
-  // extract the matches from the string\n\
-  var parts = [];\n\
-  var output = [];\n\
-  var chunk;\n\
-  var varname;\n\
-  var varParts;\n\
-  var match = reVariable.exec(format);\n\
-  var isNumeric;\n\
-  var outputIdx = 0;\n\
-  var ignoreNumeric = (opts || {}).ignoreNumeric;\n\
-\n\
-  while (match) {\n\
-    // get the prematch chunk\n\
-    chunk = format.slice(0, match.index);\n\
-    \n\
-    // if we have a valid chunk, add it to the parts\n\
-    if (chunk) {\n\
-      output[outputIdx++] = chunk;\n\
-    }\n\
-    \n\
-    varParts = match[1].split(/\\s*\\|\\s*/);\n\
-    match[1] = varParts[0];\n\
-    \n\
-    // extract the varname\n\
-    varname = parseInt(match[1], 10);\n\
-    isNumeric = !isNaN(varname);\n\
-\n\
-    // if this is a numeric replacement expression, and we are ignoring\n\
-    // those expressions then pass it through to the output\n\
-    if (ignoreNumeric && isNumeric) {\n\
-      output[outputIdx++] = match[0];\n\
-    }\n\
-    // otherwise, handle normally\n\
-    else {\n\
-      // extract the expression and add it as a function\n\
-      parts[parts.length] = {\n\
-        idx: (outputIdx++),\n\
-        numeric: isNumeric,\n\
-        varname: isNumeric ? varname : match[1],\n\
-        modifiers: varParts.length > 1 ? createModifiers(varParts.slice(1)) : []\n\
-      };\n\
-    }\n\
-\n\
-    // remove this matched chunk and replacer from the string\n\
-    format = format.slice(match.index + match[0].length);\n\
-\n\
-    // check for the next match\n\
-    match = reVariable.exec(format);\n\
-  }\n\
-  \n\
-  // if we still have some of the format string remaining, add it to the list\n\
-  if (format) {\n\
-    output[outputIdx++] = format;\n\
-  }\n\
-\n\
-  return collect(parts, output);\n\
-};\n\
-\n\
-formatter.error = function(message) {\n\
-  // create the format\n\
-  var format = formatter(message);\n\
-  \n\
-  return function(err) {\n\
-    var output;\n\
-    \n\
-    // if no error has been supplied, then pass it straight through\n\
-    if (! err) {\n\
-      return;\n\
-    }\n\
-\n\
-    output = new Error(\n\
-      format.apply(null, Array.prototype.slice.call(arguments, 1)));\n\
-\n\
-    output._original = err;\n\
-\n\
-    // return the new error\n\
-    return output;\n\
-  };\n\
-};\n\
-\n\
-function collect(parts, resolved, indexShift) {\n\
-  // default optionals\n\
-  indexShift = indexShift || 0;\n\
-\n\
-  return function() {\n\
-    var output = [].concat(resolved);\n\
-    var unresolved;\n\
-    var ii;\n\
-    var part;\n\
-    var partIdx;\n\
-    var propNames;\n\
-    var val;\n\
-    var numericResolved = [];\n\
-\n\
-    // find the unresolved parts\n\
-    unresolved = parts.filter(function(part) {\n\
-      return typeof output[part.idx] == 'undefined';\n\
-    });\n\
-\n\
-    // initialise the counter\n\
-    ii = unresolved.length;\n\
-\n\
-    // iterate through the unresolved parts and attempt to resolve the value\n\
-    for (; ii--; ) {\n\
-      part = unresolved[ii];\n\
-\n\
-      if (typeof part == 'object') {\n\
-        // if this is a numeric part, this is a simple index lookup\n\
-        if (part.numeric) {\n\
-          partIdx = part.varname - indexShift;\n\
-          if (arguments.length > partIdx) {\n\
-            output[part.idx] = arguments[partIdx];\n\
-            if (numericResolved.indexOf(part.varname) < 0) {\n\
-              numericResolved[numericResolved.length] = part.varname;\n\
-            }\n\
-          }\n\
-        }\n\
-        // otherwise, we are doing a recursive property search\n\
-        else if (arguments.length > 0) {\n\
-          propNames = (part.varname || '').split('.');\n\
-\n\
-          // initialise the output from the last valid argument\n\
-          output[part.idx] = (arguments[arguments.length - 1] || {});\n\
-          while (output[part.idx] && propNames.length > 0) {\n\
-            val = output[part.idx][propNames.shift()];\n\
-            output[part.idx] = typeof val != 'undefined' ? val : '';\n\
-          }\n\
-        }\n\
-\n\
-        // if the output was resolved, then apply the modifier\n\
-        if (typeof output[part.idx] != 'undefined' && part.modifiers) {\n\
-          output[part.idx] = applyModifiers(part.modifiers, output[part.idx]);\n\
-        }\n\
-      }\n\
-    }\n\
-\n\
-    // reasses unresolved (only caring about numeric parts)\n\
-    unresolved = parts.filter(function(part) {\n\
-      return part.numeric && typeof output[part.idx] == 'undefined';\n\
-    });\n\
-\n\
-    // if we have no unresolved parts, then return the value\n\
-    if (unresolved.length === 0) {\n\
-      return output.join('');\n\
-    }\n\
-\n\
-    // otherwise, return the collect function again\n\
-    return collect(\n\
-      parts,\n\
-      output,\n\
-      indexShift + numericResolved.length\n\
-    );\n\
-  };\n\
-}\n\
-\n\
-function applyModifiers(modifiers, value) {\n\
-  // if we have modifiers, then tweak the output\n\
-  for (var ii = 0, count = modifiers.length; ii < count; ii++) {\n\
-    value = modifiers[ii](value);\n\
-  }\n\
-\n\
-  return value;\n\
-}\n\
-\n\
-function createModifiers(modifierStrings) {\n\
-  var modifiers = [];\n\
-  var parts;\n\
-  var fn;\n\
-  \n\
-  for (var ii = 0, count = modifierStrings.length; ii < count; ii++) {\n\
-    parts = modifierStrings[ii].split(':');\n\
-    fn = mods[parts[0].toLowerCase()];\n\
-    \n\
-    if (fn) {\n\
-      modifiers[modifiers.length] = fn.apply(null, parts.slice(1));\n\
-    }\n\
-  }\n\
-  \n\
-  return modifiers;\n\
-}\n\
-//@ sourceURL=damonoehlman-formatter/index.js"
-));
-require.register("damonoehlman-formatter/mods.js", Function("exports, require, module",
-"/* jshint node: true */\n\
-'use strict';\n\
-\n\
-/**\n\
-  ## Modifiers\n\
-\n\
-**/\n\
-\n\
-/**\n\
-  ### Length Modifier (len)\n\
-\n\
-  The length modifier is used to ensure that a string is exactly the length specified.  The string is sliced to the required max length, and then padded out with spaces (or a specified character) to meet the required length.\n\
-\n\
-  ```js\n\
-  // pad the string test to 10 characters\n\
-  formatter('{{ 0|len:10 }}')('test');   // 'test      '\n\
-\n\
-  // pad the string test to 10 characters, using a as the padding character\n\
-  formatter('{{ 0|len:10:a }}')('test'); // 'testaaaaaa'\n\
-  ```\n\
-**/\n\
-exports.len = function(length, padder) {\n\
-  var testInt = parseInt(padder, 10);\n\
-  var isNumber;\n\
-\n\
-  // default the padder to a space\n\
-  padder = (! isNaN(testInt)) ? testInt : (padder || ' ');\n\
-\n\
-  // check whether we have a number for padding (we will pad left if we do)\n\
-  isNumber = typeof padder == 'number';\n\
-  \n\
-  return function(input) {\n\
-    var output = input.toString().slice(0, length);\n\
-    \n\
-    // pad the string to the required length\n\
-    while (output.length < length) {\n\
-      output = isNumber ? padder + output : output + padder;\n\
-    }\n\
-    \n\
-    return output;\n\
-  };\n\
-};//@ sourceURL=damonoehlman-formatter/mods.js"
-));
 
 require.register("clock/index.js", Function("exports, require, module",
 "module.exports = require('./lib/clock.js');//@ sourceURL=clock/index.js"
@@ -2590,22 +2404,34 @@ require.register("clock/lib/clock.js", Function("exports, require, module",
 "var Emitter = require('emitter');\n\
 var inGroupsOf = require('in-groups-of');\n\
 var range = require('range');\n\
-var formatter = require('formatter');\n\
 var domify = require('domify');\n\
 var events = require('events');\n\
 var dataset = require('dataset');\n\
 var classes = require('classes');\n\
 var timerange = require('./timerange');\n\
 var enumerable = require('enumerable');\n\
+var el = require('el');\n\
 \n\
 module.exports = Clock;\n\
 \n\
 var minuteStep = 5;\n\
 \n\
 var format = {\n\
-  table: formatter('<table class=\"{{ 1 }}\"><caption>{{ 0 }}</caption><tbody>{{ 2 }}</tbody></table>'),\n\
-  cell: formatter('<td><a href=\"#\" data-{{ 1 }}=\"{{ 0 }}\">{{ 0 }}</a></td>'),\n\
-  query: formatter('a[data-{{ 0 }}=\"{{ 1 }}\"]')\n\
+  table: function(caption, type, tbody) {\n\
+    return el('table',\n\
+      el('caption', caption) + el('tbody', tbody),\n\
+      { 'class': type });\n\
+  },\n\
+  cell: function(value, type) {\n\
+    var attribs = {\n\
+      href: '#'\n\
+    };\n\
+    attribs['data-' + type] = value;\n\
+    return el('td', el('a', attribs));\n\
+  },\n\
+  query: function(kind, value) {\n\
+    return 'a[data-' + kind + '=\"' + value + '\"]';\n\
+  }\n\
 };\n\
 \n\
 function renderTable(caption, type, rows) {\n\
@@ -2788,6 +2614,12 @@ Clock.prototype.max = function(v) {\n\
   this.valid.max(v);\n\
   this.markInvalid(this.selected.hour, true);\n\
   return this;\n\
+};\n\
+\n\
+Clock.prototype.type = function(t) {\n\
+  var ampm = (t == 12);\n\
+  classes(this.el).toggle('ampm', ampm);\n\
+  return this;\n\
 };//@ sourceURL=clock/lib/clock.js"
 ));
 require.register("clock/lib/timerange.js", Function("exports, require, module",
@@ -2882,6 +2714,8 @@ function timeRange() {\n\
 
 
 
+
+
 require.alias("code42day-bounds/index.js", "clock/deps/bounds/index.js");
 require.alias("code42day-bounds/index.js", "bounds/index.js");
 require.alias("component-clone/index.js", "code42day-bounds/deps/clone/index.js");
@@ -2890,6 +2724,10 @@ require.alias("component-type/index.js", "component-clone/deps/type/index.js");
 require.alias("code42day-dataset/index.js", "clock/deps/dataset/index.js");
 require.alias("code42day-dataset/index.js", "dataset/index.js");
 
+require.alias("code42day-el/index.js", "clock/deps/el/index.js");
+require.alias("code42day-el/index.js", "clock/deps/el/index.js");
+require.alias("code42day-el/index.js", "el/index.js");
+require.alias("code42day-el/index.js", "code42day-el/index.js");
 require.alias("component-events/index.js", "clock/deps/events/index.js");
 require.alias("component-events/index.js", "events/index.js");
 require.alias("component-event/index.js", "component-events/deps/event/index.js");
@@ -2919,6 +2757,9 @@ require.alias("component-enumerable/index.js", "enumerable/index.js");
 require.alias("component-to-function/index.js", "component-enumerable/deps/to-function/index.js");
 require.alias("component-props/index.js", "component-to-function/deps/props/index.js");
 
+require.alias("juliangruber-isarray/index.js", "component-enumerable/deps/isarray/index.js");
+require.alias("juliangruber-isarray/index.js", "component-enumerable/deps/isarray/index.js");
+require.alias("juliangruber-isarray/index.js", "juliangruber-isarray/index.js");
 require.alias("component-range/index.js", "clock/deps/range/index.js");
 require.alias("component-range/index.js", "range/index.js");
 
@@ -2928,8 +2769,3 @@ require.alias("component-emitter/index.js", "emitter/index.js");
 require.alias("component-in-groups-of/index.js", "clock/deps/in-groups-of/index.js");
 require.alias("component-in-groups-of/index.js", "in-groups-of/index.js");
 
-require.alias("damonoehlman-formatter/index.js", "clock/deps/formatter/index.js");
-require.alias("damonoehlman-formatter/mods.js", "clock/deps/formatter/mods.js");
-require.alias("damonoehlman-formatter/index.js", "clock/deps/formatter/index.js");
-require.alias("damonoehlman-formatter/index.js", "formatter/index.js");
-require.alias("damonoehlman-formatter/index.js", "damonoehlman-formatter/index.js");
