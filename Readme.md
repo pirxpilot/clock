@@ -47,6 +47,11 @@ Define the maximum time selectable with this clock (inclusive). Time values larg
 are rendered with `invalid` class. All `change` events are generated only for values smaller or equal
 to `maxTime`.
 
+### Clock#type(type)
+
+Set type to `12` to display 12 hour am/pm type of clock. Any other value resets the clock display
+to standard 24 hour display.
+
 ## License
 
   MIT
