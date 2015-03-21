@@ -1,4 +1,10 @@
 
+1.3.0 / 2015-03-20
+==================
+
+ * add support for 12h am/pm clock
+ * use CSS to display hour/minute values
+
 1.2.2 / 2015-03-01
 ==================
 
