@@ -14,10 +14,55 @@
   margin-left: .5em;
 }
 
+.clock .minute a:before {
+  content: attr(data-minute);
+}
+
 .clock a {
   display: inline-block;
+  position: relative;
+}
+
+.clock .hour {
+  counter-reset: hour -1;
+}
+
+.clock .hour a {
+  counter-increment: hour;
+}
+
+.clock .hour a:before {
+  content: counter(hour);
 }
 
 .clock .selected a {
   background-color: rgba(0, 0, 0, .2);
+}
+
+.clock.ampm .hour a {
+  min-width: 1.1em;
+}
+
+.clock.ampm .hour a[data-hour="13"] {
+  counter-increment: hour -11;
+}
+
+.clock.ampm .hour a[data-hour="0"]:before {
+  content: "12";
+}
+
+.clock.ampm .hour tr:before {
+  content: '';
+  min-width: 2em;
+  display: inline-block;
+  line-height: 1;
+  text-align: left;
+  transform: translateY(1.5em);
+}
+
+.clock.ampm .hour tr:nth-child(1):before {
+  content: 'AM'
+}
+.clock.ampm .hour tr:nth-child(3):before {
+  content: 'PM'
 }
