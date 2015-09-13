@@ -19,12 +19,30 @@
   ],
   "author": "Damian Krzeminski <pirxpilot@code42day.com>",
   "license": "MIT",
-  "readmeFilename": "Readme.md",
+  "browser": {
+    "classes": "component-classes",
+    "domify": "component-domify",
+    "el": "el-component",
+    "emitter": "component-emitter",
+    "events": "component-events",
+    "enumerable": "enumerable-component",
+    "range": "range-component"
+  },
   "dependencies": {
-    "bounds": "~1"
+    "bounds": "~1",
+    "component-classes": "^1.2.4",
+    "component-domify": "^1.2.2",
+    "component-emitter": "^1.2.0",
+    "component-events": "^1.0.9",
+    "dataset": "~0",
+    "el-component": "^1.0.0",
+    "enumerable-component": "^0.3.1",
+    "in-groups-of": "component/in-groups-of#1.0.0",
+    "range-component": "^1.0.0"
   },
   "devDependencies": {
-    "mocha": "~1",
-    "jshint": "~2"
+    "browserify": "^11.1.0",
+    "jshint": "^2.8.0",
+    "mocha": "~1"
   }
 }
