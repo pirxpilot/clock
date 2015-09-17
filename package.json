@@ -25,7 +25,6 @@
     "el": "el-component",
     "emitter": "component-emitter",
     "events": "component-events",
-    "enumerable": "enumerable-component",
     "range": "range-component"
   },
   "dependencies": {
@@ -36,7 +35,6 @@
     "component-events": "^1.0.9",
     "dataset": "~0",
     "el-component": "^1.0.0",
-    "enumerable-component": "^0.3.1",
     "in-groups-of": "component/in-groups-of#1.0.0",
     "range-component": "^1.0.0"
   },
