@@ -3,7 +3,7 @@
   "repo": "code42day/clock",
   "demo": "http://code42day.github.io/clock/",
   "description": "Clock UI component for use in time-picker",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "keywords": [
     "clock",
     "time"
