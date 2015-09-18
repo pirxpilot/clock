@@ -1,6 +1,6 @@
 {
   "name": "code42day-clock",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Clock UI component for use in time-picker",
   "main": "index.js",
   "directories": {
