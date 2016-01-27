@@ -3,9 +3,17 @@ var assert = require('assert');
 
 
 describe('timerange', function(){
-  it('should consider all times as valid if no min/max specified', function() {
+  it('should consider all times between 0:00 and 23:59 as valid if no min/max specified', function() {
     var t = timerange();
-    assert.ok(t.valid({ hour: 10, minute: 15}));
+    assert.ok(t.valid({ hour: 0, minute: 0 }));
+    assert.ok(t.valid({ hour: 23, minute: 59 }));
+    assert.ok(t.valid({ hour: 10, minute: 15 }));
+  });
+
+  it('should consider all times outside of 0:00 and 23:59 as invalid', function() {
+    var t = timerange();
+    assert.ok(!t.valid({ hour: -1, minute: 15 }));
+    assert.ok(!t.valid({ hour: 24, minute: 0 }));
   });
 
   it('should consider hours inside of the range as valid', function() {
@@ -76,6 +84,7 @@ describe('timerange', function(){
     var t = timerange()
       .max({ hour: 9, minute: 15 })
       .min({ hour: 20, minute: 35 });
+    assert.deepEqual(t.restrict({ hour: -1, minute: 3 }), { hour: 0, minute: 0 });
     assert.deepEqual(t.restrict({ hour: 8,  minute: 0  }), { hour: 8,  minute: 0  });
     assert.deepEqual(t.restrict({ hour: 9,  minute: 10 }), { hour: 9,  minute: 10 });
     assert.deepEqual(t.restrict({ hour: 9,  minute: 15 }), { hour: 9,  minute: 15 });
@@ -84,5 +93,6 @@ describe('timerange', function(){
     assert.deepEqual(t.restrict({ hour: 20, minute: 35 }), { hour: 20, minute: 35 });
     assert.deepEqual(t.restrict({ hour: 20, minute: 40 }), { hour: 20, minute: 40 });
     assert.deepEqual(t.restrict({ hour: 21, minute: 10 }), { hour: 21, minute: 10 });
+    assert.deepEqual(t.restrict({ hour: 24, minute: 10 }), { hour: 23, minute: 59 });
   });
 });

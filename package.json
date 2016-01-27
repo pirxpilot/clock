@@ -37,6 +37,7 @@
     "component-events": "^1.0.9",
     "dataset": "~0",
     "el-component": "^1.0.0",
+    "inherits": "^2.0.1",
     "range-component": "^1.0.0"
   },
   "devDependencies": {
