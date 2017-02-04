@@ -61,8 +61,8 @@
 }
 
 .clock.ampm .hour tr:nth-child(1):before {
-  content: 'AM'
+  content: attr(data-am)
 }
 .clock.ampm .hour tr:nth-child(3):before {
-  content: 'PM'
+  content: attr(data-pm)
 }
