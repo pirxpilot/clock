@@ -44,5 +44,9 @@
     "browserify": "^11.1.0",
     "jshint": "^2.8.0",
     "mocha": "~1"
-  }
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ]
 }
