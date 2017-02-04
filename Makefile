@@ -1,34 +1,35 @@
 PROJECT=clock
-SRC=index.js lib/clock.js
-BIN=./node_modules/.bin
+NODE_BIN=./node_modules/.bin
+SRC = index.js $(wildcard lib/*.js)
+CSS = lib/clock.css
 
 all: check compile
 
 check: lint test
-
-lint: node_modules
-	$(BIN)/jshint $(SRC)
-
-test: node_modules
-	$(BIN)/mocha --reporter spec
 
 compile: build/build.js build/build.css
 
 build:
 	mkdir -p $@
 
-build/build.js: node_modules index.js | build
-	$(BIN)/browserify --require ./index.js:$(PROJECT) --outfile $@
+build/build.css: $(CSS) | build
+	cat $^ > $@
+
+build/build.js: node_modules $(SRC) | build
+	$(NODE_BIN)/browserify --require ./index.js:$(PROJECT) --outfile $@
 
 .DELETE_ON_ERROR: build/build.js
 
-build/build.css: lib/clock.css | build
-	cp $< $@
-
 node_modules: package.json
-	npm install
+	yarn && touch $@
+
+lint: | node_modules
+	$(NODE_BIN)/jshint $(SRC) test
+
+test: | node_modules
+	$(NODE_BIN)/mocha --reporter spec
 
 clean:
 	rm -fr build node_modules
 
-.PHONY: clean test lint check all
+.PHONY: clean lint check all compile test

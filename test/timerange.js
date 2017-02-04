@@ -1,6 +1,7 @@
 var timerange = require('../lib/timerange.js');
 var assert = require('assert');
 
+/* global it, describe */
 
 describe('timerange', function(){
   it('should consider all times between 0:00 and 23:59 as valid if no min/max specified', function() {

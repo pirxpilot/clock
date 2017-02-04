@@ -1,3 +1,6 @@
+[![NPM version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Dependency Status][gemnasium-image]][gemnasium-url]
 
 # clock
 
@@ -9,7 +12,7 @@
 
 ## Installation
 
-    $ component install code42day/clock
+    $ npm install --save code42day-clock
 
 ## Example
 
@@ -55,3 +58,13 @@ to standard 24 hour display.
 ## License
 
   MIT
+
+[npm-image]: https://img.shields.io/npm/v/code42day-clock.svg
+[npm-url]: https://npmjs.org/package/code42day-clock
+
+[travis-url]: https://travis-ci.org/code42day/clock
+[travis-image]: https://img.shields.io/travis/code42day/clock.svg
+
+[gemnasium-image]: https://img.shields.io/gemnasium/code42day/clock.svg
+[gemnasium-url]: https://gemnasium.com/code42day/clock
+
