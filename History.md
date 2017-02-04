@@ -1,4 +1,10 @@
 
+1.4.1 / 2017-02-04
+==================
+
+ * upgrade mocha and browserify
+ * switch to yarn from npm
+
 1.4.0 / 2016-01-26
 ==================
 
