@@ -5,8 +5,41 @@
     <link rel="stylesheet" href="build/build.css" type="text/css">
     <style>
       body {
-        font: 14px sans-serif;
+        font: 13px sans-serif;
         padding: 3em;
+      }
+      .clock {
+        padding: 5px;
+        margin: 5px;
+        border: 1px solid #eee;
+        border-bottom: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 1px 2px #eee
+      }
+      .hour caption,
+      .minute caption {
+        font-weight: bold
+      }
+      .clock a {
+        display: block;
+        padding: 5px;
+        text-decoration: none;
+        color: inherit;
+        border-radius: 3px
+      }
+      .clock a:hover {
+        background: #efefef
+      }
+      .clock a:active {
+        opacity: .75;
+      }
+      .clock .selected {
+        background: none
+      }
+      .clock .selected a {
+        background: linear-gradient(#76aaef, #0085CC);
+        color: white;
+        box-shadow: inset 0 1px #2b8dea
       }
       .clock .invalid {
         opacity: .2;
@@ -35,7 +68,7 @@
       <input class='time' placeholder='click on the clock...' readonly/>
       <input class='time-complete' readonly/>
     </div>
-    <div id='reversed'>
+    <div id='reversed' data-hours="Godziny" data-minutes="Minuty">
       <h2>Reverse restriction</h2>
       <input class='time' placeholder='click on the clock...' readonly/>
       <input class='time-complete' readonly/>
@@ -52,7 +85,8 @@
 
       ['standard', 'restricted', 'reversed'].forEach(function(name) {
         var section = document.querySelector('#' + name);
-        clocks[name] = new Clock()
+        var captions = section.dataset;
+        clocks[name] = new Clock({ captions: captions })
         .on('change', function(value, complete) {
           updateInput(section, ' .time', value);
           if (complete) {
