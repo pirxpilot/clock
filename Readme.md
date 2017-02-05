@@ -34,6 +34,11 @@ clock.select({
 
 ## API
 
+### Clock({ captions })
+
+- `captions` - optional dictionary { hours, minutes, am, pm } - entries will be used by clock to render
+captions for Hours, Minutes, AM and PM - `Object` or [`HTMLElement.dataset`][dataset] can be used as a dictionary
+
 ### Clock#select(time)
 
 Select the given `time` ({ hour, minute }).
@@ -58,6 +63,8 @@ to standard 24 hour display.
 ## License
 
   MIT
+
+[dataset]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
 
 [npm-image]: https://img.shields.io/npm/v/code42day-clock.svg
 [npm-url]: https://npmjs.org/package/code42day-clock
