@@ -1,5 +1,5 @@
 {
-  "name": "code42day-clock",
+  "name": "component-clock",
   "version": "1.5.0",
   "description": "Clock UI component for use in time-picker",
   "main": "index.js",
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/code42day/clock.git"
+    "url": "git://github.com/pirxpilot/clock.git"
   },
   "keywords": [
     "clock",
     "time"
   ],
-  "author": "Damian Krzeminski <pirxpilot@code42day.com>",
+  "author": "Damian Krzeminski <pirxpilot@furkot.com>",
   "license": "MIT",
   "browser": {
     "classes": "component-classes",

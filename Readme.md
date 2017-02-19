@@ -8,16 +8,16 @@
 
   ![Clock](https://gist.github.com/pirxpilot/5011178/raw/9da0b4c2194444a6a3965d71adaf2b8c59f1faba/preview.png)
 
-  Click [here](http://code42day.github.io/clock/) to see online demo.
+  Click [here](http://pirxpilot.github.io/clock/) to see online demo.
 
 ## Installation
 
-    $ npm install --save code42day-clock
+    $ npm install --save component-clock
 
 ## Example
 
 ```js
-var Clock = require('clock');
+var Clock = require('component-clock');
 var clock = new Clock;
 clock.el.appendTo('body');
 clock.select({
@@ -66,12 +66,12 @@ to standard 24 hour display.
 
 [dataset]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
 
-[npm-image]: https://img.shields.io/npm/v/code42day-clock.svg
-[npm-url]: https://npmjs.org/package/code42day-clock
+[npm-image]: https://img.shields.io/npm/v/component-clock.svg
+[npm-url]: https://npmjs.org/package/component-clock
 
-[travis-url]: https://travis-ci.org/code42day/clock
-[travis-image]: https://img.shields.io/travis/code42day/clock.svg
+[travis-url]: https://travis-ci.org/pirxpilot/clock
+[travis-image]: https://img.shields.io/travis/pirxpilot/clock.svg
 
-[gemnasium-image]: https://img.shields.io/gemnasium/code42day/clock.svg
-[gemnasium-url]: https://gemnasium.com/code42day/clock
+[gemnasium-image]: https://img.shields.io/gemnasium/pirxpilot/clock.svg
+[gemnasium-url]: https://gemnasium.com/pirxpilot/clock
 
