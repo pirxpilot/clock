@@ -25,12 +25,12 @@
     "el": "el-component",
     "emitter": "component-emitter",
     "events": "component-events",
-    "in-groups-of": "code42day-in-groups-of",
+    "in-groups-of": "@pirxpilot/in-groups-of",
     "range": "range-component"
   },
   "dependencies": {
     "bounds": "~1",
-    "code42day-in-groups-of": "^1.0.1",
+    "@pirxpilot/in-groups-of": "^1.1.1",
     "component-classes": "^1.2.4",
     "component-domify": "^1.2.2",
     "component-emitter": "^1.2.0",
