@@ -1,4 +1,10 @@
 
+1.5.1 / 2017-02-18
+==================
+
+ * update deprecated dependencies
+ * transfer repo to pirxpilot
+
 1.5.0 / 2017-02-04
 ==================
 
