@@ -20,7 +20,6 @@
   "author": "Damian Krzeminski <pirxpilot@furkot.com>",
   "license": "MIT",
   "browser": {
-    "classes": "component-classes",
     "domify": "component-domify",
     "el": "el-component",
     "emitter": "component-emitter",
@@ -29,9 +28,8 @@
     "range": "range-component"
   },
   "dependencies": {
-    "bounds": "~1",
     "@pirxpilot/in-groups-of": "^1.1.1",
-    "component-classes": "^1.2.4",
+    "bounds": "~1",
     "component-domify": "^1.2.2",
     "component-emitter": "^1.2.0",
     "component-events": "^1.0.9",
