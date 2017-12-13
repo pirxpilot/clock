@@ -1,4 +1,10 @@
 
+1.5.2 / 2017-12-12
+==================
+
+ * remove component-events
+ * remove component-classes
+
 1.5.1 / 2017-02-18
 ==================
 
