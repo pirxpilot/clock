@@ -31,7 +31,6 @@
     "bounds": "~1",
     "component-domify": "^1.2.2",
     "component-emitter": "^1.2.0",
-    "dataset": "~0",
     "el-component": "^1.0.0",
     "inherits": "^2.0.1",
     "range-component": "^1.0.0"
