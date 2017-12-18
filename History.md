@@ -1,4 +1,9 @@
 
+1.6.0 / 2017-12-18
+==================
+
+ * remove dataset module - IE >= 11 or a polyfill required
+
 1.5.2 / 2017-12-12
 ==================
 

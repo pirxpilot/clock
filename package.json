@@ -1,6 +1,6 @@
 {
   "name": "component-clock",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "Clock UI component for use in time-picker",
   "main": "index.js",
   "directories": {
