@@ -16,7 +16,7 @@ build/build.css: $(CSS) | build
 	cat $^ > $@
 
 build/build.js: node_modules $(SRC) | build
-	$(NODE_BIN)/browserify --require ./index.js:$(PROJECT) --outfile $@
+	$(NODE_BIN)/browserify --debug --require ./index.js:$(PROJECT) --outfile $@
 
 .DELETE_ON_ERROR: build/build.js
 

@@ -19,26 +19,18 @@
   ],
   "author": "Damian Krzeminski <pirxpilot@furkot.com>",
   "license": "MIT",
-  "browser": {
-    "domify": "component-domify",
-    "el": "el-component",
-    "emitter": "component-emitter",
-    "in-groups-of": "@pirxpilot/in-groups-of",
-    "range": "range-component"
-  },
   "dependencies": {
     "@pirxpilot/in-groups-of": "^1.1.1",
-    "bounds": "~1",
+    "bounds": "~2",
     "component-domify": "^1.2.2",
     "component-emitter": "^1.2.0",
     "el-component": "^1.0.0",
-    "inherits": "^2.0.1",
     "range-component": "^1.0.0"
   },
   "devDependencies": {
     "browserify": "~14",
-    "jshint": "^2.8.0",
-    "mocha": "~3"
+    "jshint": "~2",
+    "mocha": "~5"
   },
   "files": [
     "index.js",
