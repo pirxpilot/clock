@@ -30,7 +30,8 @@
   "devDependencies": {
     "browserify": "~16",
     "jshint": "~2",
-    "mocha": "~5"
+    "tap-dot": "~2",
+    "tape": "~4"
   },
   "files": [
     "index.js",

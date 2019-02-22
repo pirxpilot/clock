@@ -27,7 +27,7 @@ lint: | node_modules
 	$(NODE_BIN)/jshint $(SRC) test
 
 test: | node_modules
-	$(NODE_BIN)/mocha --reporter spec
+	$(NODE_BIN)/tape test/*.js | $(NODE_BIN)/tap-dot
 
 clean:
 	rm -fr build node_modules
