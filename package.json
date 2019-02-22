@@ -28,7 +28,7 @@
     "range-component": "^1.0.0"
   },
   "devDependencies": {
-    "browserify": "~14",
+    "browserify": "~16",
     "jshint": "~2",
     "mocha": "~5"
   },
