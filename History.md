@@ -1,4 +1,10 @@
 
+2.0.1 / 2019-02-21
+==================
+
+ * fix: revert to accepting String '12' as AM/PM switch
+ * replace mocha with tape
+
 2.0.0 / 2018-11-29
 ==================
 
