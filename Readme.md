@@ -1,6 +1,8 @@
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Dependency Status][gemnasium-image]][gemnasium-url]
+[![Dependency Status][deps-image]][deps-url]
+[![Dev Dependency Status][deps-dev-image]][deps-dev-url]
+
 
 # clock
 
@@ -17,8 +19,8 @@
 ## Example
 
 ```js
-var Clock = require('component-clock');
-var clock = new Clock;
+const Clock = require('component-clock');
+const clock = new Clock();
 clock.el.appendTo('body');
 clock.select({
 	hour: 11,
@@ -72,6 +74,8 @@ to standard 24 hour display.
 [travis-url]: https://travis-ci.org/pirxpilot/clock
 [travis-image]: https://img.shields.io/travis/pirxpilot/clock.svg
 
-[gemnasium-image]: https://img.shields.io/gemnasium/pirxpilot/clock.svg
-[gemnasium-url]: https://gemnasium.com/pirxpilot/clock
+[deps-image]: https://img.shields.io/david/pirxpilot/clock.svg
+[deps-url]: https://david-dm.org/pirxpilot/clock
 
+[deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/clock.svg
+[deps-dev-url]: https://david-dm.org/pirxpilot/clock?type=dev

@@ -28,9 +28,10 @@
     "range-component": "^1.0.0"
   },
   "devDependencies": {
-    "browserify": "~14",
+    "browserify": "~16",
     "jshint": "~2",
-    "mocha": "~5"
+    "tap-dot": "~2",
+    "tape": "~4"
   },
   "files": [
     "index.js",
