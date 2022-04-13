@@ -96,12 +96,10 @@ bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
   integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
 
-bounds@~2:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/bounds/-/bounds-2.0.0.tgz#6629fe2c77bf6141bc590b7cd81b54f8cca63d59"
-  integrity sha512-2u4rO7srbcBaNR+u1ZWB2I9P0CPaHGCsiNsOZTGjPKENIMWOULhJgab5YXYtUaECDYqeDSgPRBw4Ho78200YcQ==
-  dependencies:
-    clone-component "^0.2.2"
+bounds@~3:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/bounds/-/bounds-3.0.0.tgz#d13e24e58c8a54414e2aba193f505de39e8848d0"
+  integrity sha512-JzRUVqVzqxw7itORBsVTsySbLYRbktYpL1ZW8nz9ueQOwja6xkDUWmIimaGyvvR+cU1tYZZzs99okpQHPBLh6w==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -303,13 +301,6 @@ cli@~1.0.0:
     exit "0.1.2"
     glob "^7.1.1"
 
-clone-component@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/clone-component/-/clone-component-0.2.2.tgz#82e56c2e92cd34e7c42b668630c620128fa926ba"
-  integrity sha1-guVsLpLNNOfEK2aGMMYgEo+pJro=
-  dependencies:
-    component-type "*"
-
 combine-source-map@^0.8.0, combine-source-map@~0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/combine-source-map/-/combine-source-map-0.8.0.tgz#a58d0df042c186fcf822a8e8015f5450d2d79a8b"
@@ -324,11 +315,6 @@ component-emitter@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
   integrity sha1-E3kY1teCg/ffemt8WmPhQOaUJeY=
-
-component-type@*:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/component-type/-/component-type-1.2.1.tgz#8a47901700238e4fc32269771230226f24b415a9"
-  integrity sha1-ikeQFwAjjk/DIml3EjAibyS0Fak=
 
 concat-map@0.0.1:
   version "0.0.1"

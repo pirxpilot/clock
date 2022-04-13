@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "@pirxpilot/in-groups-of": "^1.1.1",
-    "bounds": "~2",
+    "bounds": "~3",
     "component-emitter": "^1.2.0",
     "el-component": "^1.0.0",
     "range-component": "^1.0.0"

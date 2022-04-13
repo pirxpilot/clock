@@ -9,5 +9,5 @@
   "undef": true,
   "unused": true,
   "browserify": true,
-  "esversion": 6
+  "esversion": 9
 }
