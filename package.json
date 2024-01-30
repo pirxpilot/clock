@@ -9,10 +9,7 @@
   "scripts": {
     "test": "make test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/pirxpilot/clock.git"
-  },
+  "repository": "github:pirxpilot/clock",
   "keywords": [
     "clock",
     "time"
