@@ -9,10 +9,7 @@
   "scripts": {
     "test": "make test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/pirxpilot/clock.git"
-  },
+  "repository": "github:pirxpilot/clock",
   "keywords": [
     "clock",
     "time"
@@ -27,10 +24,8 @@
     "range-component": "^1.0.0"
   },
   "devDependencies": {
-    "browserify": "~16",
-    "jshint": "~2",
-    "tap-dot": "~2",
-    "tape": "~4"
+    "@pirxpilot/jshint": "~3",
+    "esbuild": "^0.20.0"
   },
   "files": [
     "index.js",

@@ -1,14 +1,11 @@
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][build-image]][build-url]
 [![Dependency Status][deps-image]][deps-url]
-[![Dev Dependency Status][deps-dev-image]][deps-dev-url]
 
 
 # clock
 
   Clock UI component for use in time-picker
-
-  ![Clock](https://gist.github.com/pirxpilot/5011178/raw/9da0b4c2194444a6a3965d71adaf2b8c59f1faba/preview.png)
 
   Click [here](http://pirxpilot.github.io/clock/) to see online demo.
 
@@ -68,14 +65,12 @@ to standard 24 hour display.
 
 [dataset]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
 
-[npm-image]: https://img.shields.io/npm/v/component-clock.svg
+[npm-image]: https://img.shields.io/npm/v/component-clock
 [npm-url]: https://npmjs.org/package/component-clock
 
-[travis-url]: https://travis-ci.org/pirxpilot/clock
-[travis-image]: https://img.shields.io/travis/pirxpilot/clock.svg
+[build-url]: https://github.com/pirxpilot/clock/actions/workflows/check.yaml
+[build-image]: https://img.shields.io/github/actions/workflow/status/pirxpilot/clock/check.yaml?branch=main
 
-[deps-image]: https://img.shields.io/david/pirxpilot/clock.svg
-[deps-url]: https://david-dm.org/pirxpilot/clock
+[deps-image]: https://img.shields.io/librariesio/release/npm/component-clock
+[deps-url]: https://libraries.io/npm/component-clock
 
-[deps-dev-image]: https://img.shields.io/david/dev/pirxpilot/clock.svg
-[deps-dev-url]: https://david-dm.org/pirxpilot/clock?type=dev
