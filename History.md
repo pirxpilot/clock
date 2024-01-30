@@ -1,4 +1,10 @@
 
+2.0.4 / 2024-01-30
+==================
+
+ * replace tape with node:test
+ * replace browserify with esbuild
+
 2.0.3 / 2022-04-13
 ==================
 
