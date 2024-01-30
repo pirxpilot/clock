@@ -27,8 +27,8 @@
     "range-component": "^1.0.0"
   },
   "devDependencies": {
+    "@pirxpilot/jshint": "~3",
     "esbuild": "^0.20.0",
-    "jshint": "~2",
     "tap-dot": "~2",
     "tape": "~4"
   },
