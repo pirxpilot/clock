@@ -23,13 +23,14 @@ build/build.js: node_modules $(SRC) | build
 		index.js
 
 node_modules: package.json
-	yarn && touch $@
+	yarn
+	touch $@
 
 lint: | node_modules
 	$(NODE_BIN)/jshint $(SRC) test
 
 test: | node_modules
-	$(NODE_BIN)/tape test/*.js | $(NODE_BIN)/tap-dot
+	node --test
 
 clean:
 	rm -fr build node_modules
