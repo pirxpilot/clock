@@ -1,6 +1,6 @@
 {
   "name": "component-clock",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "description": "Clock UI component for use in time-picker",
   "type": "module",
   "exports": "./lib/clock.js",
