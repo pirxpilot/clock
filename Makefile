@@ -27,12 +27,19 @@ node_modules: package.json
 	touch $@
 
 lint: | node_modules
-	$(NODE_BIN)/jshint $(SRC) test
+	$(NODE_BIN)/biome ci
+
+format: | node_modules
+	$(NODE_BIN)/biome check --fix
 
 test: | node_modules
-	node --test
+	node --test $(TEST_OPTS)
+
+test-cov: TEST_OPTS := --experimental-test-coverage
+test-cov: test
+
 
 clean:
 	rm -fr build node_modules
 
-.PHONY: clean lint check all compile test
+.PHONY: clean lint format check all compile test test-cov

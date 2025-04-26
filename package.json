@@ -24,7 +24,7 @@
     "range-component": "^1.0.0"
   },
   "devDependencies": {
-    "@pirxpilot/jshint": "~3",
+    "@biomejs/biome": "^1.9.4",
     "esbuild": "^0.20.0"
   },
   "files": [

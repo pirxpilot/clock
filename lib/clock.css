@@ -36,7 +36,7 @@
 }
 
 .clock .selected a {
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .clock.ampm .hour a {
@@ -52,7 +52,7 @@
 }
 
 .clock.ampm .hour tr:before {
-  content: '';
+  content: "";
   min-width: 2em;
   display: inline-block;
   line-height: 1;
@@ -61,8 +61,8 @@
 }
 
 .clock.ampm .hour tr:nth-child(1):before {
-  content: attr(data-am)
+  content: attr(data-am);
 }
 .clock.ampm .hour tr:nth-child(3):before {
-  content: attr(data-pm)
+  content: attr(data-pm);
 }
