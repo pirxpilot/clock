@@ -1,6 +1,6 @@
 PROJECT=clock
 NODE_BIN=./node_modules/.bin
-SRC = index.js $(wildcard lib/*.js)
+SRC = $(wildcard lib/*.js)
 CSS = lib/clock.css
 
 all: check compile
@@ -18,9 +18,9 @@ build/build.css: $(CSS) | build
 build/build.js: node_modules $(SRC) | build
 	$(NODE_BIN)/esbuild \
 		--bundle \
-		--global-name=Clock \
+		--global-name=clock \
 		--outfile=$@ \
-		index.js
+		lib/clock.js
 
 node_modules: package.json
 	yarn

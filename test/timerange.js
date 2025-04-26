@@ -1,7 +1,6 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-
-const timerange = require('../lib/timerange.js');
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import timerange from '../lib/timerange.js';
 
 test('should consider all times between 0:00 and 23:59 as valid if no min/max specified', function () {
   const t = timerange();

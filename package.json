@@ -2,10 +2,8 @@
   "name": "component-clock",
   "version": "2.0.4",
   "description": "Clock UI component for use in time-picker",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "type": "module",
+  "exports": "./lib/clock.js",
   "scripts": {
     "test": "make test"
   },
@@ -28,7 +26,6 @@
     "esbuild": "^0.20.0"
   },
   "files": [
-    "index.js",
     "lib"
   ]
 }
