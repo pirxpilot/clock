@@ -18,12 +18,12 @@
     "@pirxpilot/in-groups-of": "^1.1.1",
     "bounds": "~3",
     "component-emitter": "^1.2.0",
-    "el-component": "^1.0.0",
+    "el-component": "~2",
     "range-component": "^1.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "esbuild": "^0.20.0"
+    "esbuild": "^0.25.0"
   },
   "files": [
     "lib"
