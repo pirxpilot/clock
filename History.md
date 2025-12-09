@@ -1,4 +1,13 @@
 
+3.0.1 / 2025-12-08
+==================
+
+ * upgrade `esbuild` to 0.27.1
+ * upgrade `biome` to 2.3.8
+ * upgrade `component-emitter` to 2.0.0
+ * upgrade bounds to 4.0.0
+ * update github actions
+
 3.0.0 / 2025-04-26
 ==================
 
