@@ -15,24 +15,20 @@ build:
 build/build.css: $(CSS) | build
 	cat $^ > $@
 
-build/build.js: node_modules $(SRC) | build
+build/build.js: $(SRC) | build
 	$(NODE_BIN)/esbuild \
 		--bundle \
 		--global-name=clock \
 		--outfile=$@ \
 		lib/clock.js
 
-node_modules: package.json
-	yarn
-	touch $@
-
-lint: | node_modules
+lint:
 	$(NODE_BIN)/biome ci
 
-format: | node_modules
+format:
 	$(NODE_BIN)/biome check --fix
 
-test: | node_modules
+test:
 	node --test $(TEST_OPTS)
 
 test-cov: TEST_OPTS := --experimental-test-coverage
@@ -40,6 +36,6 @@ test-cov: test
 
 
 clean:
-	rm -fr build node_modules
+	rm -fr build
 
 .PHONY: clean lint format check all compile test test-cov
