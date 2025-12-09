@@ -79,15 +79,15 @@
       var clocks = {};
 
       function updateInput(section, selector, value) {
-        var str = '' + value.hour + ':' + value.minute;
+        var str = `${value.hour}:${value.minute}`;
         section.querySelector(selector).value = str;
       }
 
-      ['standard', 'restricted', 'reversed'].forEach(function(name) {
-        var section = document.querySelector('#' + name);
+      ['standard', 'restricted', 'reversed'].forEach((name) => {
+        var section = document.querySelector(`#${name}`);
         var captions = section.dataset;
         clocks[name] = new Clock({ captions: captions })
-        .on('change', function(value, complete) {
+        .on('change', (value, complete) => {
           updateInput(section, ' .time', value);
           if (complete) {
             updateInput(section, ' .time-complete', value);
