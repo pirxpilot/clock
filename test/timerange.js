@@ -2,20 +2,20 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import timerange from '../lib/timerange.js';
 
-test('should consider all times between 0:00 and 23:59 as valid if no min/max specified', function () {
+test('should consider all times between 0:00 and 23:59 as valid if no min/max specified', () => {
   const t = timerange();
   assert.ok(t.valid({ hour: 0, minute: 0 }));
   assert.ok(t.valid({ hour: 23, minute: 59 }));
   assert.ok(t.valid({ hour: 10, minute: 15 }));
 });
 
-test('should consider all times outside of 0:00 and 23:59 as invalid', function () {
+test('should consider all times outside of 0:00 and 23:59 as invalid', () => {
   const t = timerange();
   assert.ok(!t.valid({ hour: -1, minute: 15 }));
   assert.ok(!t.valid({ hour: 24, minute: 0 }));
 });
 
-test('should consider hours inside of the range as valid', function () {
+test('should consider hours inside of the range as valid', () => {
   const t = timerange().min({ hour: 9, minute: 15 }).max({ hour: 20, minute: 35 });
   assert.ok(!t.isValidHour(8));
   assert.ok(t.isValidHour(9));
@@ -24,7 +24,7 @@ test('should consider hours inside of the range as valid', function () {
   assert.ok(!t.isValidHour(21));
 });
 
-test('should consider hours outside of the range as valid, when reversed', function () {
+test('should consider hours outside of the range as valid, when reversed', () => {
   const t = timerange().max({ hour: 9, minute: 15 }).min({ hour: 20, minute: 35 });
   assert.ok(t.isValidHour(8));
   assert.ok(t.isValidHour(9));
@@ -33,7 +33,7 @@ test('should consider hours outside of the range as valid, when reversed', funct
   assert.ok(t.isValidHour(21));
 });
 
-test('should consider minutes inside of the range as valid', function () {
+test('should consider minutes inside of the range as valid', () => {
   const t = timerange().min({ hour: 9, minute: 15 }).max({ hour: 20, minute: 35 });
   assert.ok(!t.isValidMinute(8, 0));
   assert.ok(!t.isValidMinute(9, 10));
@@ -45,7 +45,7 @@ test('should consider minutes inside of the range as valid', function () {
   assert.ok(!t.isValidMinute(21, 10));
 });
 
-test('should consider minutes outside of the range as valid, when reversed', function () {
+test('should consider minutes outside of the range as valid, when reversed', () => {
   const t = timerange().max({ hour: 9, minute: 15 }).min({ hour: 20, minute: 35 });
   assert.ok(t.isValidMinute(8, 0));
   assert.ok(t.isValidMinute(9, 10));
@@ -57,7 +57,7 @@ test('should consider minutes outside of the range as valid, when reversed', fun
   assert.ok(t.isValidMinute(21, 10));
 });
 
-test('should restrict time properly', function () {
+test('should restrict time properly', () => {
   const t = timerange().min({ hour: 9, minute: 15 }).max({ hour: 20, minute: 35 });
   assert.deepEqual(t.restrict({ hour: 8, minute: 0 }), { hour: 9, minute: 15 });
   assert.deepEqual(t.restrict({ hour: 9, minute: 10 }), { hour: 9, minute: 15 });
@@ -69,7 +69,7 @@ test('should restrict time properly', function () {
   assert.deepEqual(t.restrict({ hour: 21, minute: 10 }), { hour: 20, minute: 35 });
 });
 
-test('should restrict time properly', function () {
+test('should restrict time properly', () => {
   const t = timerange().max({ hour: 9, minute: 15 }).min({ hour: 20, minute: 35 });
   assert.deepEqual(t.restrict({ hour: -1, minute: 3 }), { hour: 0, minute: 0 });
   assert.deepEqual(t.restrict({ hour: 8, minute: 0 }), { hour: 8, minute: 0 });

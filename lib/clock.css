@@ -11,7 +11,7 @@
 }
 
 .clock .minute {
-  margin-left: .5em;
+  margin-left: 0.5em;
 }
 
 .clock .minute a:before {
