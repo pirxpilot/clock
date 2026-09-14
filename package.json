@@ -1,19 +1,5 @@
 {
-  "name": "component-clock",
-  "version": "3.0.1",
-  "description": "Clock UI component for use in time-picker",
-  "type": "module",
-  "exports": "./lib/clock.js",
-  "scripts": {
-    "test": "make test"
-  },
-  "repository": "github:pirxpilot/clock",
-  "keywords": [
-    "clock",
-    "time"
-  ],
   "author": "Damian Krzeminski <pirxpilot@furkot.com>",
-  "license": "MIT",
   "dependencies": {
     "@pirxpilot/in-groups-of": "^1.1.1",
     "bounds": "~4",
@@ -21,11 +7,25 @@
     "el-component": "~2",
     "range-component": "^1.0.0"
   },
+  "description": "Clock UI component for use in time-picker",
   "devDependencies": {
-    "@biomejs/biome": "2.3.8",
-    "esbuild": "^0.27.1"
+    "@biomejs/biome": "2.5.13",
+    "esbuild": "^0.28.2"
   },
+  "exports": "./lib/clock.js",
   "files": [
     "lib"
-  ]
+  ],
+  "keywords": [
+    "clock",
+    "time"
+  ],
+  "license": "MIT",
+  "name": "component-clock",
+  "repository": "github:pirxpilot/clock",
+  "scripts": {
+    "test": "make test"
+  },
+  "type": "module",
+  "version": "3.0.1"
 }

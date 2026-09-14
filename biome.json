@@ -3,28 +3,24 @@
   "assist": {
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "on",
+        "useSortedKeys": "on"
       }
     }
-  },
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
   },
   "files": {
     "ignoreUnknown": true
   },
   "formatter": {
     "enabled": true,
-    "useEditorconfig": true,
-    "lineWidth": 120
+    "lineWidth": 120,
+    "useEditorconfig": true
   },
   "javascript": {
     "formatter": {
+      "arrowParentheses": "asNeeded",
       "quoteStyle": "single",
-      "trailingCommas": "none",
-      "arrowParentheses": "asNeeded"
+      "trailingCommas": "none"
     }
   },
   "json": {
@@ -35,24 +31,25 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "complexity": {
+        "noForEach": "off"
+      },
       "correctness": {
         "noUndeclaredVariables": "error",
         "noUnusedVariables": "error"
       },
-      "complexity": {
-        "noForEach": "off"
+      "performance": {
+        "noDelete": "off"
       },
+      "preset": "recommended",
       "style": {
+        "noDescendingSpecificity": "off",
         "noUnusedTemplateLiteral": "error",
         "noUselessElse": "error",
         "useBlockStatements": "error",
         "useDefaultParameterLast": "error",
         "useNumberNamespace": "error",
         "useSingleVarDeclarator": "error"
-      },
-      "performance": {
-        "noDelete": "off"
       },
       "suspicious": {
         "noAssignInExpressions": "off"
@@ -70,5 +67,10 @@
         ]
       }
     }
-  ]
+  ],
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
 }
