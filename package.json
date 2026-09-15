@@ -4,8 +4,7 @@
     "@pirxpilot/in-groups-of": "^1.1.1",
     "bounds": "~4",
     "component-emitter": "~2",
-    "el-component": "~2",
-    "range-component": "^1.0.0"
+    "el-component": "~2"
   },
   "description": "Clock UI component for use in time-picker",
   "devDependencies": {
